@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="logDataSource" targetRuntime="MyBatis3">
+		<jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(LOAD_BALANCE=true)(FAILOVER=true)(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=thanglv)(FAILOVER_MODE=(TYPE=SELECT)(METHOD=BASIC))))"
+			userId="furniture_log" password="1234">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator
+			targetPackage="vn.neo.api.entity.log" targetProject="api-template" />
+		<sqlMapGenerator
+			targetPackage="vn.neo.api.mapper.log"
+			targetProject="api-template/src/main/resources" />
+		<javaClientGenerator
+			targetPackage="vn.neo.api.mapper.log"
+			targetProject="api-template" type="XMLMAPPER" />
+
+		<table schema="furniture_log" tableName="log_act">
+			<property name="runtimeTableName" value="log_act" />
+		</table>
+
+	</context>
+</generatorConfiguration>
