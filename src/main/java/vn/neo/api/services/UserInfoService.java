@@ -1,5 +1,5 @@
 package vn.neo.api.services;
 
-public class UserInfoService {
+public interface UserInfoService {
 
 }
