@@ -5,6 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import vn.neo.api.dto.UserInfoDto;
 import vn.neo.api.mapper.primary.UserInfoMapper;
 
 @Service
@@ -15,6 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserInfoDto userInfo = userInfoMapper.findUserOperationByUsername(username);
 		return null;
 	}
 

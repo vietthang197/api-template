@@ -19,6 +19,26 @@
     <result column="USERNAME" jdbcType="VARCHAR" property="username" />
     <result column="CUSTOMER_ID" jdbcType="NUMERIC" property="customerId" />
   </resultMap>
+  
+  <resultMap type="vn.neo.api.jwt.CustomGrantedAuthority" id="customGrantedAuthorityMap">
+  	<result column="operation_name" jdbcType="VARCHAR" property="operationName"/>
+  </resultMap>
+  
+  <resultMap type="vn.neo.api.dto.UserInfoDto" id="UserInfoOperationMap">
+	  	<id column="USER_ID" jdbcType="NUMERIC" property="userId" />
+	    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+	    <result column="CREATED_DATE" jdbcType="TIMESTAMP" property="createdDate" />
+	    <result column="LAST_MODIFIED_BY" jdbcType="VARCHAR" property="lastModifiedBy" />
+	    <result column="LAST_MODIFIED_DATE" jdbcType="TIMESTAMP" property="lastModifiedDate" />
+	    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+	    <result column="NAME" jdbcType="VARCHAR" property="name" />
+	    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+	    <result column="STATE" jdbcType="NUMERIC" property="state" />
+	    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+	    <result column="CUSTOMER_ID" jdbcType="NUMERIC" property="customerId" />
+	    <collection property="authorities" javaType="java.util.Set" resultMap="customGrantedAuthorityMap"></collection>
+   </resultMap>
+  
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated
@@ -96,6 +116,14 @@
     USER_ID, CREATED_BY, CREATED_DATE, LAST_MODIFIED_BY, LAST_MODIFIED_DATE, EMAIL, NAME, 
     PASSWORD, STATE, USERNAME, CUSTOMER_ID
   </sql>
+  <select id="findUserOperationByUsername" parameterType="java.lang.String" resultMap="UserInfoOperationMap">
+  		SELECT ui.*, o.name AS operation_name FROM user_info ui 
+		LEFT JOIN user_role ur ON ui.user_id = ur.user_id 
+		LEFT JOIN role r ON r.role_id = ur.role_id 
+		LEFT JOIN role_operation ro ON r.role_id = ro.role_id 
+		LEFT JOIN operation o ON o.operation_id = ro.operation_id 
+		WHERE ui.username = #{username,jdbcType=VARCHAR}
+  </select>
   <select id="selectByExample" parameterType="vn.neo.api.entity.primary.UserInfoExample" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated

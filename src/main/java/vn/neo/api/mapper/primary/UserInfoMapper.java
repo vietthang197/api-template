@@ -1,6 +1,8 @@
 package vn.neo.api.mapper.primary;
 
 import org.apache.ibatis.annotations.*;
+
+import vn.neo.api.dto.UserInfoDto;
 import vn.neo.api.entity.primary.UserInfo;
 import vn.neo.api.entity.primary.UserInfoExample;
 
@@ -29,4 +31,6 @@ public interface UserInfoMapper {
             @Result(property = "createdDate", column = "created_date")
     })
     UserInfo findByUsername(String username);
+    
+    UserInfoDto findUserOperationByUsername(@Param("username") String username);
 }
