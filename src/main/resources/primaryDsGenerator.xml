@@ -23,8 +23,8 @@
 			targetPackage="vn.neo.api.mapper.primary"
 			targetProject="api-template" type="XMLMAPPER" />
 
-		<table schema="furniture" tableName="user_info">
-			<property name="runtimeTableName" value="user_info" />
+		<table schema="furniture" tableName="user_role">
+			<property name="runtimeTableName" value="user_role" />
 		</table>
 
 	</context>
