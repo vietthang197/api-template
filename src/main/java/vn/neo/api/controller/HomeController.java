@@ -1,10 +1,9 @@
 package vn.neo.api.controller;
 
-
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import vn.neo.api.entity.primary.UserInfo;
 import vn.neo.api.mapper.primary.UserInfoMapper;
 
 @RestController
@@ -16,11 +15,10 @@ public class HomeController {
 		this.userInfoMapper = userInfoMapper;
 	}
 	
-	@GetMapping
-	@PreAuthorize("hasAuthority('ADMIN')")
-	public String getData() {
+	@GetMapping("/authenticate")
+	public UserInfo getData() {
 		
-		return "OK";
+		return userInfoMapper.findByUsername("admin");
 	}
 
 }

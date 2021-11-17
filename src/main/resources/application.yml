@@ -17,3 +17,10 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     hikari: 
       pool-name: Hikari
+mybatis:
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    default-fetch-size: 10000
+    default-executor-type: batch
