@@ -19,7 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @AllArgsConstructor
 public class UserInfoDto implements Serializable {
 
-    private Long userId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Long userId;
     private String createdBy;
     private Date createdDate;
     private String lastModifiedBy;

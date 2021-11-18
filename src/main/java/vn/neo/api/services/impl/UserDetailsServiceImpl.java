@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import vn.neo.api.dto.UserInfoDto;
+import vn.neo.api.jwt.Users;
 import vn.neo.api.mapper.primary.UserInfoMapper;
 
 @Service
@@ -18,7 +19,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserInfoDto userInfo = userInfoMapper.findUserOperationByUsername(username);
-		return null;
+		if (userInfo == null)
+			throw new UsernameNotFoundException("User does not exists");
+		return new Users(userInfo.getUsername(), userInfo.getPassword(), true, true, true, true, userInfo.getAuthorities());
 	}
 
 }

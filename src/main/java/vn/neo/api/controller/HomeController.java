@@ -22,8 +22,7 @@ public class HomeController {
 	
 	@GetMapping("/authenticate")
 	public UserInfoDto getData() {
-		UserInfoDto response = userInfoMapper.findUserOperationByUsername("admin");
-		return response;
+		return userInfoMapper.findUserOperationByUsername("admin");
 	}
 
 }

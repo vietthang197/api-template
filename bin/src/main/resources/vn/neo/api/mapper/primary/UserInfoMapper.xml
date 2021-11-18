@@ -21,7 +21,7 @@
   </resultMap>
   
   <resultMap type="vn.neo.api.jwt.CustomGrantedAuthority" id="customGrantedAuthorityMap">
-  	<result column="OPERATION_NAME" jdbcType="VARCHAR" property="operationName"/>
+  	<result column="operation_name" jdbcType="VARCHAR" property="operationName"/>
   </resultMap>
   
   <resultMap type="vn.neo.api.dto.UserInfoDto" id="UserInfoOperationMap">
